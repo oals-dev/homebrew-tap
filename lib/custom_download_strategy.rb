@@ -32,14 +32,14 @@ class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
 
   private
 
-  def _fetch(url:, resolved_url:)
-    curl_download download_url, to: temporary_path
+  def _fetch(url:, resolved_url:, timeout:)
+    curl_download download_url, to: temporary_path, timeout: timeout
   end
 
   def set_github_token
     @github_token = ENV["HOMEBREW_GITHUB_API_TOKEN"]
     unless @github_token
-      raise CurlDownloadStrategyError, "Environment variable HOMEBREW_GITHUB_API_TOKEN is required."
+      raise CurlDownloadStrategyError, "Environmental variable HOMEBREW_GITHUB_API_TOKEN is required."
     end
 
     validate_github_repository_access!
@@ -48,7 +48,7 @@ class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
   def validate_github_repository_access!
     # Test access to the repository
     GitHub.repository(@owner, @repo)
-  rescue GitHub::HTTPNotFoundError
+  rescue GitHub::API::HTTPNotFoundError
     # We only handle HTTPNotFoundError here,
     # becase AuthenticationFailedError is handled within util/github.
     message = <<~EOS
@@ -83,10 +83,10 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDo
 
   private
 
-  def _fetch(url:, resolved_url:)
+  def _fetch(url:, resolved_url:, timeout:)
     # HTTP request header `Accept: application/octet-stream` is required.
     # Without this, the GitHub API will respond with metadata, not binary.
-    curl_download download_url, "--header", "Accept: application/octet-stream", to: temporary_path
+    curl_download download_url, "--header", "Accept: application/octet-stream", to: temporary_path, timeout: timeout
   end
 
   def asset_id
@@ -103,26 +103,6 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDo
 
   def fetch_release_metadata
     release_url = "https://api.github.com/repos/#{@owner}/#{@repo}/releases/tags/#{@tag}"
-    GitHub.open_api(release_url)
-  end
-end
-
-class DownloadStrategyDetector
-  class << self
-    module Compat
-
-      def detect_from_symbol(symbol)
-        case symbol
-        when :github_private_repo
-          GitHubPrivateRepositoryDownloadStrategy
-        when :github_private_release
-          GitHubPrivateRepositoryReleaseDownloadStrategy
-        else
-          super(symbol)
-        end
-      end
-    end
-
-    prepend Compat
+    GitHub::API.open_rest(release_url)
   end
 end
