@@ -6,21 +6,21 @@ require_relative "../lib/custom_download_strategy"
 class AwsSts < Formula
   desc "Install tools"
   homepage "https://github.com/oals-dev/homebrew-tap"
-  version "0.0.5"
+  version "0.0.6"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.5/aws-sts_0.0.5_Darwin_arm64.tar.gz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "bfba6421edc29613977ca9f53eb3cb57a3f1e22de06e1f885d91c5c4348a7139"
+      url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.6/aws-sts_0.0.6_Darwin_arm64.tar.gz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "a0d5aa8701bdf704ba888228a7f0a851587f7ed8d6c20806a4b99260fb707268"
 
       def install
         bin.install "aws-sts"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.5/aws-sts_0.0.5_Darwin_x86_64.tar.gz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "ed68d086193f56430e7e74958db57b22cddf0f2b30d482cff770f1bfbf211070"
+      url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.6/aws-sts_0.0.6_Darwin_x86_64.tar.gz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "afcbb4c2f447033838499de7229b9c94dda1997956e6ff836e523dea9af4025a"
 
       def install
         bin.install "aws-sts"
@@ -30,16 +30,16 @@ class AwsSts < Formula
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.5/aws-sts_0.0.5_Linux_arm64.tar.gz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "4b60c70a77aec0821ab1b233657a1b1ac0105ee319109fe36a3028383a9a3d33"
+      url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.6/aws-sts_0.0.6_Linux_arm64.tar.gz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "ce863b6d0c04285e67f09a43c39aa0473760b3010d35f56203b25b9217ddca0c"
 
       def install
         bin.install "aws-sts"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.5/aws-sts_0.0.5_Linux_x86_64.tar.gz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "a2a6446053ca61221e4dfe6f2124428b3ead31c6317d55a0bd1a742737818ba4"
+      url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.6/aws-sts_0.0.6_Linux_x86_64.tar.gz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "e6e29670788f69efa65b6ed7d16f554d627628e56cfae96d089c031f8f8d0bef"
 
       def install
         bin.install "aws-sts"
