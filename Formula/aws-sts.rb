@@ -11,7 +11,7 @@ class AwsSts < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.2/aws-sts_0.0.2_Darwin_arm64.tar.gz"
-      sha256 "ad8f72024306ce02018bdc05e5816a9ae5a4d0a20b5c835dd58db7c2df3bc7b9"
+      sha256 "211f13f5bb37e053af2a6643f8b55c27a27e173e030f8fd6ceeb3caf0b503bfb"
 
       def install
         bin.install "aws-sts"
@@ -19,7 +19,7 @@ class AwsSts < Formula
     end
     if Hardware::CPU.intel?
       url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.2/aws-sts_0.0.2_Darwin_x86_64.tar.gz"
-      sha256 "7a8ab465d06c36b640e428e94621ed705a87434d05b4463f801c17377927aa01"
+      sha256 "c1c5c9c8f4a94d8e0e7fd6350a1c4265a58a1c4f92c66646bbbf9b815756ccd1"
 
       def install
         bin.install "aws-sts"
@@ -30,7 +30,7 @@ class AwsSts < Formula
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.2/aws-sts_0.0.2_Linux_arm64.tar.gz"
-      sha256 "4e34399fd49ed4234fd47ac6df816cdd9b1373069924bfb9e80a5182a3356951"
+      sha256 "6567a5020245cf1d434a54ee6053c9645872680bb0aabc6699fedd7a8e58a61c"
 
       def install
         bin.install "aws-sts"
@@ -38,7 +38,7 @@ class AwsSts < Formula
     end
     if Hardware::CPU.intel?
       url "https://github.com/oals-dev/aws-sts/releases/download/v0.0.2/aws-sts_0.0.2_Linux_x86_64.tar.gz"
-      sha256 "9c012988e372cb2c3352c5638b4901a96e3319898288273c7fa9b30e43e68e15"
+      sha256 "8081a184521766089372db51fe28c01dd424007232198272733a66a2f8e878fe"
 
       def install
         bin.install "aws-sts"
