@@ -16,6 +16,7 @@ class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
     super
     parse_url_pattern
     set_github_token
+    @url = download_url
   end
 
   def parse_url_pattern
@@ -66,6 +67,7 @@ end
 class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDownloadStrategy
   def initialize(url, name, version, **meta)
     super
+    @url = download_url
   end
 
   def parse_url_pattern
